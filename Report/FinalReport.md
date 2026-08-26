@@ -1,3 +1,4 @@
+<img width="1640" height="924" alt="Image" src="https://github.com/user-attachments/assets/397e6a5d-4b69-4506-97e0-4202f898cec6" />
 # Final Report
 
 ## 1. Detailed EDA & Preprocessing Decisions
