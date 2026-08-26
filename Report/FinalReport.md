@@ -16,7 +16,22 @@ Applied PCA to reduce feature dimensionality, capturing the majority of structur
 - **Insight:** Clustering established a natural baseline for resort scale, making it clear which specific resorts price above or below their physical peer group.
 
 ## 3. Supervised Models Tested & Compared
-### Feature Engineering
+### Before building either mode, a handful of resorts with TotalSlope ==0 were dropped from the dataset, since a resort with no recorded slopes did not provide any benefit for a model to investigate how slope counts could relate to day pass price.
+
+Model 1: Slopes-Only Random Forest
+As we were interested in determining whether number of slopes has any impact on the day pass price, I selected 'BeginnerSlope', 'IntermediateSlope' and 'DifficultSlope' values to be included as the features and referenced as 'X' for our independent variable.
+
+Model 2: Slopes + Country Random Forest
+Building on Model 1, the 'Country' column was one-hot encoded into dummy variable to test whether resort location also impacted day pass price, with countries having fewer than 5 resorts grouped into an 'Other' category to avoid overly sparse features. These dummy variables were added to the slope features to build the second model.
+
+Model Comparison
+The R2 score tells us how much variance the model explains on unseen data. Adding the country specific feature drastically improved the test R2 score as this represented the unseen data. Comparing Model 1 (Slopes-Only Random Forest) to Model 2 (Slopes + Country specific Random Forest), we observe that Model 1's R2 test score increased from .3814 to Model 2's R2 test score of .7352, when we accounted for max_depth. We also observed with country specific feature were added to the model, there was a reduction in overfitting.
+
+While R2 was able to tell us about variance in our model's evaluation, we needed to see how much of an improvement our prediction were through RMSE (Root Mean Squared Error). In Model 1, the RMSE was 8.27, whereas Model 2, RMSE improved to 6.9178.
+
+Furthermore, Mean Absolute Error (MAE) provides another lens to see how accurate our model's predictions. On average, Model's 2 MAE was off by about 5.41 EUR, whereas Model 1's MAE was off by 6.274 EUR, which represents a 12.93% MAE error for Model 2 and 15% for Model 1.
+
+Feature Engineering
 - Target Variable: Adult Day Pass Price (EUR).
 - One-Hot Encoding: Encoded `Country` into dummy variables, grouping countries with fewer than 5 resorts into an `'Other'` category to prevent feature sparsity.
 
