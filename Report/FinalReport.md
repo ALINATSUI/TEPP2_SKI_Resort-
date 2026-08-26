@@ -21,12 +21,20 @@ Applied PCA to reduce feature dimensionality, capturing the majority of structur
 
 Model 1: Slopes-Only Random Forest
 As we were interested in determining whether number of slopes has any impact on the day pass price, I selected 'BeginnerSlope', 'IntermediateSlope' and 'DifficultSlope' values to be included as the features and referenced as 'X' for our independent variable.
-
+### Model 1: Slopes-Only Random Forest
+- **Features:** `BeginnerSlope`, `IntermediateSlope`, `DifficultSlope`
+- **Performance:** $R^2 = 0.3814$, $\text{RMSE} = 8.27$, $\text{MAE} = 6.274\text{ EUR}$ (~15% error).
+- 
 Model 2: Slopes + Country Random Forest
 Building on Model 1, the 'Country' column was one-hot encoded into dummy variable to test whether resort location also impacted day pass price, with countries having fewer than 5 resorts grouped into an 'Other' category to avoid overly sparse features. These dummy variables were added to the slope features to build the second model.
+### Model 2: Slopes + Country Random Forest
+- **Features:** Slope breakdown + One-Hot Encoded Country features.
+- **Performance:** $R^2 = 0.7352$, $\text{RMSE} = 6.9178$, $\text{MAE} = 5.41\text{ EUR}$ (~12.93% error).
 
 Model Comparison
 The R2 score tells us how much variance the model explains on unseen data. Adding the country specific feature drastically improved the test R2 score as this represented the unseen data. Comparing Model 1 (Slopes-Only Random Forest) to Model 2 (Slopes + Country specific Random Forest), we observe that Model 1's R2 test score increased from .3814 to Model 2's R2 test score of .7352, when we accounted for max_depth. We also observed with country specific feature were added to the model, there was a reduction in overfitting.
+### Model Comparison
+Adding country-specific features significantly expanded the variance explained ($R^2$ jumped from ~0.38 to ~0.74), drastically reduced overall error (RMSE dropped by 1.35 EUR), and minimized model overfitting.
 
 While R2 was able to tell us about variance in our model's evaluation, we needed to see how much of an improvement our prediction were through RMSE (Root Mean Squared Error). In Model 1, the RMSE was 8.27, whereas Model 2, RMSE improved to 6.9178.
 
@@ -36,16 +44,6 @@ Feature Engineering
 - Target Variable: Adult Day Pass Price (EUR).
 - One-Hot Encoding: Encoded `Country` into dummy variables, grouping countries with fewer than 5 resorts into an `'Other'` category to prevent feature sparsity.
 
-### Model 1: Slopes-Only Random Forest
-- **Features:** `BeginnerSlope`, `IntermediateSlope`, `DifficultSlope`
-- **Performance:** $R^2 = 0.3814$, $\text{RMSE} = 8.27$, $\text{MAE} = 6.274\text{ EUR}$ (~15% error).
-
-### Model 2: Slopes + Country Random Forest
-- **Features:** Slope breakdown + One-Hot Encoded Country features.
-- **Performance:** $R^2 = 0.7352$, $\text{RMSE} = 6.9178$, $\text{MAE} = 5.41\text{ EUR}$ (~12.93% error).
-
-### Model Comparison
-Adding country-specific features significantly expanded the variance explained ($R^2$ jumped from ~0.38 to ~0.74), drastically reduced overall error (RMSE dropped by 1.35 EUR), and minimized model overfitting.
 
 ## 4. Model Selection & Rationale
 While several supervised models were available to choose from, Random Forest was selected for its ensemble learning approach: it builds decision trees, each trained on a bootstrapped sample (random sampling with replacement) of the dataset and restricted to a random subset of features at each split.
