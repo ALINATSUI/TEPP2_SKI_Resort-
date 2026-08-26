@@ -3,7 +3,7 @@
 
 # Repository Structure
 ```
-│   README.md
+│      README.md
 │   
 ├───code
 │       .DS_Store
@@ -11,7 +11,7 @@
 │       
 ├───dashboard
 │       EDA Dashboard.png
-│       K-mean Dashboard (1).png
+│       K-mean Dashboard.png
 │       ML Liner Regression Dashboard.png
 │       
 ├───data
@@ -21,7 +21,11 @@
 │       ski_resorts_ML.csv
 │       ski_resorts_processed.csv
 │       ski_resorts_supervised_predictions.csv
+│       ski_resorts_unsupervised.csv
 │       ski_resorts_unsupervised_predictions.csv
+│       
+├───Report
+│       Final_Report.md
 │       
 ├───supervised_learning
 │       supervised.ipynb
@@ -29,50 +33,96 @@
 └───unsupervised_learning
         unsupervised.ipynb
 ```
-
-# European Ski Resort 
-
-
+# European Ski Resort Analysis
+Dataset: 376 resorts, 16 features covering elevation, slopes, lifts, pricing, and amenities.
 ## Problem
-
-
+This project explores a practical business question: does the number and difficulty mix of a resort’s ski slopes help explain the price it charges for an adult day pass?
 ## Intended Audience
-
-
-## Data Sources
-
-
+- Data practitioners
+- Ski Resort Researchers
+- Business Strategists
+- Outdoor Recreation Enthusiasts
+## Data Source
+European Ski Resorts (Kaggle) — 376 resorts, 16 features covering elevation, slopes, lifts, pricing, and amenities for 2022. 
 ## Technologies Used
-
-
+- Visual Studio Code: Python, Jutyper Notebooks
+- Tableau Public 
+- CSV Data Outputs
+- GitHub
 ## Methodology
 
-### **<u>Unsupervised Learning (PCA & K-Means Clustering)**</u>
+### **Exploratory Data Analysis**
+- Examined distributions, feature relationships, and data quality issues in the raw dataset.
 
-We selected 7 features (core characteristics) of the resorts while leaving price out of the initial grouping. This included vertical drop, snowmaking abilities, varying slope levels and lift types. This allowed us to see where the natural groupings of the resorts were based on the physical amenities that they offered.
+### **Preprocessing**
+- Cleaned the data, handled missing values, encoded categorical features, and scaled numerical variables.
 
-All features were scaled and data was simplified to 2 components as this allowed us to keep 85% of the original data detail and made it easier to map the resorts to find the natural groupings that had similarities to each other. This method made it easier to also visually compare where each group had noticeable differences.
 
-There were 4 clusters based on the physical size of the resort (Small/Budget, Mid-Size, Large and Mega Resort). We then compared each cluster’s average day pass price against its physical amenities to see how closely aligned the pricing structure was across categories.
+### **Modeling Outputs**
 
-### **<u>Supervised Learning</u>**
+**`ski_resorts_clean.csv`**  
+- Cleaned dataset for EDA and visualization.
 
-We selected key resort features to predict adult day pass prices, focusing on physical amenities that drive consumer value — slope counts across three difficulty tiers (Beginner, Intermediate, Difficult). We trained two Random Forest Regressor models to isolate the effect of slope count from regional pricing effects: a slopes-only baseline, and a second model adding country/region. Both were tuned via GridSearchCV (n_estimators, max_depth) with cross-validation to control for overfitting.
+**`ski_resorts_processed.csv`**  
+- Encoded and scaled dataset for supervised and unsupervised modeling.
 
-Slope count alone had a real but limited relationship with day pass price (R² = 0.38). Adding country/region drastically improved performance (R² = 0.74), indicating that regional market factors — likely cost of living, currency, and resort brand — play a larger role in pricing than terrain size alone. Within the slope features, intermediate-difficulty terrain was the strongest individual predictor of price.
+
+### **Unsupervised Learning (PCA & K-Means Clustering)**
+
+- Selected 7 core resort features (vertical drop, snowmaking capacity, slope difficulty mix, lift types, etc.) and excluded price to let natural groupings form based on physical amenities.
+
+- Scaled all features and reduced the dataset to 2 principal components, preserving 85% of the original variance and making clusters easier to visualize.
+
+- Identified 4 resort clusters based on physical size: Small/Budget, Mid‑Size, Large, and Mega.
+
+- Compared each cluster’s average day‑pass price to its physical attributes to evaluate how well pricing aligns with amenity levels.
+
+### **Supervised Learning**
+
+- Selected key slope‑related features (Beginner, Intermediate, Difficult counts) to predict adult day‑pass prices, focusing on physical amenities that influence consumer value.
+
+- Trained two **Random Forest Regressor**  models:
+
+    - **Baseline**: slope counts only
+
+    - **Enhanced**: slope counts + country/region
+
+- Tuned both models using GridSearchCV (n_estimators, max_depth) with cross‑validation to reduce overfitting.
+
+- Found that slope count alone had a moderate relationship with price (R² = 0.38).
+
+- Adding country/region significantly improved performance (R² = 0.74), showing that regional market factors influence pricing more than terrain size alone.
+
+- Among slope features, intermediate‑difficulty terrain was the strongest individual predictor of price.
 
 ## Key Findings
-
+  ### 1. Terrain size influences pricing, but with limits. 
+  Resorts with more slopes (especially intermediate terrain) consistently charge higher day‑pass prices.  
+  ### 2. Resort size categories create clear pricing tiers. 
+  Small/Budget, Mid‑Size, Large, and Mega resorts form distinct clusters, each with its own typical price range.
+  ### 3. Terrain alone can’t fully explain pricing.
+  Supervised modeling shows slope count predicts price moderately well, but regional factors dramatically improve accuracy, meaning location and market conditions matter as much as terrain.
+  ### 4. Certain resorts price above or below terrain‑based expectations.
+  Prediction errors highlight outliers, likely driven by brand reputation, destination status, or local cost structures.
 
 ## Tableau Dashboards
+Tableau Public Link: https://public.tableau.com/app/profile/sarah.nalepa/vizzes
 
-
+![alt text](<dashboard/EDA Dashboard.png>)
+![alt text](<dashboard/K-mean Dashboard (2).png>)
+![alt text](<dashboard/ML Liner Regression Dashboard (1).png>)
 ## Recommendations
+1. **Use terrain mix and resort size as baseline pricing inputs.** More intermediate terrain and larger resort size consistently align with higher day‑pass prices.
+2. **Factor regional context into pricing decisions.** Location and market conditions influence price beyond physical amenities.
+3. **Review outlier resorts for strategic opportunities.** Pricing deviations may signal brand, positioning, or operational gaps.
+4. **Apply cluster categories for segmentation.** Small/Budget, Mid‑Size, Large, and Mega clusters support differentiated marketing and investment planning. 
 
-## Limitations/ Next Steps
--
--
--
+## Limitations
+1. Dataset is Europe‑focused, limiting generalization to global markets.
+2. Terrain features alone are incomplete, lacking variables like snow reliability, accessibility, or brand reputation.
+3. Price data reflects a single snapshot, not seasonal or dynamic pricing.
+## Next Steps
+Integrate regional economic indicators, add weather/snow data, and test additional models (e.g., gradient boosting) to improve predictive accuracy.
 ## Team Member Contributions
 
 ### Alina Tsui
@@ -85,11 +135,8 @@ Data preprocessing and exploratory analysis were the tasks assigned to me. Apart
 -
 ### Sarah Nalepa
 Product Manager and Tableau Dashboards (EDA, Supervised, Unsupervised)
-Tableau Public Link: https://public.tableau.com/app/profile/sarah.nalepa/vizzes
-<img width="1998" height="1598" alt="EDA Dashboard" src="https://github.com/user-attachments/assets/496616ac-6a3f-4567-abae-7bed2c26d79d" />
-<img width="1998" height="1598" alt="K-mean Dashboard (2)" src="https://github.com/user-attachments/assets/8bab90ab-fd0c-400d-ad59-1a2466937606" />
-<img width="1998" height="1598" alt="ML Liner Regression Dashboard (1)" src="https://github.com/user-attachments/assets/04fbe2eb-082c-4f7f-b3e0-b03994a27688" />
 
+Tableau Public Link: https://public.tableau.com/app/profile/sarah.nalepa/vizzes
 ### Zaria Taylor
--
+Collaborated with my team to select our project topic, identify the dataset, and define the analytical problem we aimed to solve. Completed the README.md and ensured the final project documentation was comprehensive, visually clear, and fully prepared for submission. 
 ## Link to Final Report
