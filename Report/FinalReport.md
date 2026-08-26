@@ -52,6 +52,10 @@ While several supervised models were available to choose from, Random Forest was
 Each captures a slightly different patterns in the data. The forest's final prediction is the average of all individual trees prediction which helps to minimize errors and converges towards the true underlying signal.
 
 ### Key Findings
+While intermediate slope count is the strongest predictor of price (supervised finding), it does not dominate the resorts' overall structural variation (unsupervised finding) — beginner and intermediate slope counts vary together across resorts at similar magnitudes. This suggests intermediate terrain specifically carries pricing power beyond what its overall variability alone would suggest.
+
+Switzerland stood out in feature importance as it had the highest mean day pass price among countries with a decent sample size (€52.84 vs. the €41.83 overall average).
+
 - **Intermediate Slope Power:** Intermediate slope count is the single strongest terrain predictor of pricing power, despite beginner and intermediate slope counts showing similar physical variance in unsupervised PCA.
 - **Country Weight:** Geographic location acts as a major price driver. For example, location in Switzerland accounted for ~30% of feature importance, reflecting higher base operating costs and local market pricing (€52.84 mean pass price vs. €41.83 overall average).
 
