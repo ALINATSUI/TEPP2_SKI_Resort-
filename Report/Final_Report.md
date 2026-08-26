@@ -1,18 +1,97 @@
-# European Ski Resorts
+# Final Report 
 
-*Do More Slopes Drive Up Day Pass Prices?*
 
-## Technical Documentation
+## Section 1 
+## Detailed EDA & Preprocessing decisions
+
+
+
+
+
+
+## Section 2: Unsupervised Learning Approach & Findings
+
+### Feature Selection
+
+### PCA
+
+### K-Means Clustering
+
+
+
+#### Cluster Interpretation
+
+
+
+
+
+
+
+# Section 3: Supervised Models tested & compared
+
+
+## Feature Engineering
+Before building either mode, a handful of resorts with `TotalSlope ==0` were dropped from the dataset, since a resort with no recorded slopes did not provide any benefit for a model to investigate how slope counts could relate to day pass price.  
+
+
+
+### Model 1: Slopes-Only Random Forest
+As we were interested in determining whether number of slopes has any impact on the day pass price, I selected 'BeginnerSlope', 'IntermediateSlope' and 'DifficultSlope' values to be included as the features and referenced as 'X' for our independent variable. 
+
+### Model 2: Slopes + Country Random Forest
+
+Building on Model 1, the 'Country' column was one-hot encoded into dummy variable to test whether resort location also impacted day pass price, with countries having fewer than 5 resorts grouped into an 'Other' category to avoid overly sparse features. These dummy variables were added to the slope features to build the second model. 
+
+### Model Comparison
+
+The R<sup>2</sup> score tells us how much variance the model explains on unseen data. Adding the country specific feature drastically improved the test R<sup>2</sup> score as this represented the unseen data. Comparing Model 1 (Slopes-Only Random Forest) to Model 2 (Slopes + Country specific Random Forest), we observe that Model 1's R<sup>2</sup> test score increased from .3814 to Model 2's R<sup>2</sup> test score of .7352, when we accounted for max_depth. 
+We also observed with country specific feature were added to the model, there was a reduction in overfitting. 
+
+While R<sup>2</sup> was able to tell us about variance in our model's evaluation, we needed to see how much of an improvement our prediction were through RMSE (Root Mean Squared Error). In Model 1, the RMSE was 8.27, whereas Model 2, RMSE improved to 6.9178. 
+
+Furthermore, Mean Absolute Error (MAE) provides another lens to see how accurate our model's predictions. On average, Model's 2 MAE was off by about 5.41 EUR, whereas Model 1's MAE was off by 6.274 EUR, which represents a 12.93% MAE error for Model 2 and 15% for Model 1. 
+
+
+
+# Section 4: Model selection & rationale 
+
+While several supervised models were available to choose from, Random Forest was selected for its ensemble learning approach: it builds decision trees,  each trained on a bootstrapped sample (random sampling with replacement) of the dataset and restricted to a random subset of features at each split.
+
+Each captures a slightly different patterns in the data. The forest's final prediction is the average of all individual trees prediction which helps to minimize errors and converges towards the true underlying signal. 
+
+## Findings
+While intermediate slope count is the strongest predictor of price (supervised finding), it does not dominate the resorts' overall structural variation (unsupervised finding) — beginner and intermediate slope counts vary together across resorts at similar magnitudes. This suggests intermediate terrain specifically carries pricing power beyond what its overall variability alone would suggest.
+
+Switzerland stood out in feature importance as it had the highest mean day pass price among countries with a decent sample size (€52.84 vs. the €41.83 overall average). 
+
+# Section 5: Detailed results
+
+
+![Feature Importance](../supervised_learning/Feature_Importance.png)
+
+![Actual vs Predicted: Tuned Hyperparameters](../supervised_learning/actual_vs_predicted_tuned_hyperparams.png)
+
+![Elbow Method](../unsupervised_learning/Elbow_Method.png)
+![K-means](../unsupervised_learning/K-Means_Cluster_Comparison.png)
+![Resort Segment Profile](../unsupervised_learning/Resort_Segment_Profile.png)
+
+!['R2 Train Score by Comparison](../supervised_learning/table.svg)
+
+~~# European Ski Resorts~~
+
+~~*Do More Slopes Drive Up Day Pass Prices?*~~
+
+~~## Technical Documentation~~
 
 ### European Ski Resorts Analysis – Capstone Project
 
-### Supervised & Unsupervised Machine Learning Tableau Dashboards
+~~### Supervised & Unsupervised Machine Learning Tableau Dashboards~~
 
-The Knowledge House Data Analytics Fellowship
+~~The Knowledge House Data Analytics Fellowship~~
 
 ---
 
-## 1. Summary
+~~## 1. Summary~~
 
 This project asks a practical business question: does the number and difficulty mix of ski slopes at a resort explain what it charges for an adult day pass?
 
@@ -29,41 +108,41 @@ Slope counts explain some variation in price, but the best single predictor is t
 - Adding country as a feature improved the model and reduced mean absolute percentage error.
 - Unsupervised clustering (K-Means, k=4) independently confirmed a natural segmentation into small-budget, midsize, large, and mega resorts based on physical scale.
 - This revealed which resorts are priced above or below what their peers typically charge.
-- Switzerland-based resorts are consistently priced near their cluster average.
+- ~~Switzerland-based resorts are consistently priced near their cluster average.~~
 
 ---
 
-## 2. Project Overview
+~~## 2. Project Overview
 
-### Objective
+### Objective~~
 
 Test the hypothesis that resort scale drives adult day pass pricing by leveraging both supervised and unsupervised data to triangulate the answer.
 
-### Deliverables
+~~### Deliverables
 
-The team produced the following deliverables:
+~The team produced the following deliverables:
 
-- Three Jupyter notebooks: exploratory data analysis, preprocessing, supervised modeling, and unsupervised modeling
+- Three Jupyter notebooks: exploratory data analysis, preprocessing, supervised modeling, and unsupervised modeling~~
 - Seven CSV data outputs
 - Three Tableau dashboards:
   - Exploratory Data Analysis
   - Supervised Model Results
   - Unsupervised Cluster Analysis
-- Technical documentation covering methodology and findings
+- Technical documentation covering methodology and findings~
 
-### Data Source
+~~### Data Source
 
-Dataset: European Ski Resorts (Kaggle), originally sourced from skiresort.info.
+~Dataset: European Ski Resorts (Kaggle), originally sourced from skiresort.info.
 
-The dataset includes 377 resorts across 27 countries, with 18 raw features covering elevation, slope difficulty, lifts, snowmaking, and adult day pass pricing.
+The dataset includes 377 resorts across 27 countries, with 18 raw features covering elevation, slope difficulty, lifts, snowmaking, and adult day pass pricing.~
 
 ---
 
-## 3. Methodology
+~## 3. Methodology
 
-### Data Preparation
+### Data Preparation~
 
-The raw dataset was cleaned and standardized to ensure data quality and consistency before modeling. This included handling missing values, validating numerical ranges, and preparing features for both supervised and unsupervised analysis.
+~The raw dataset was cleaned and standardized to ensure data quality and consistency before modeling. This included handling missing values, validating numerical ranges, and preparing features for both supervised and unsupervised analysis.~
 
 ### Exploratory Data Analysis
 
@@ -108,7 +187,7 @@ Cluster analysis helped identify resorts that are priced above or below that of 
 
 ---
 
-## 5. Conclusion
+~## 5. Conclusion~
 
 The analysis suggests that adult ski day pass pricing is driven by a combination of terrain mix, resort scale, and country context. While the number of slopes contributes to pricing, the composition of the terrain—especially intermediate slopes—is the strongest signal. Country effects remain important, but the physical resort profile is the most informative foundational driver.
 
@@ -116,10 +195,11 @@ This project demonstrates how supervised and unsupervised learning can be combin
 
 ---
 
-## 6. Appendix: Project Scope Summary
+~## 6. Appendix: Project Scope Summary
 
 - Problem: Does resort terrain explain adult day pass pricing?
-- Dataset: European Ski Resorts (Kaggle)
-- Methodology: EDA, preprocessing, RandomForest regression, PCA + K-Means
-- Visualization: Tableau dashboards
-- Final conclusion: Price is partially explained by terrain mix; intermediate terrain is the strongest driver, with country also contributing materially.
+- Dataset: European Ski Resorts (Kaggle)~
+~- Methodology: EDA, preprocessing, RandomForest regression, PCA + K-Means
+- Visualization: Tableau dashboards~
+~- Final conclusion: Price is partially explained by terrain mix; intermediate terrain is the strongest driver, with country also contributing materially.
+~
