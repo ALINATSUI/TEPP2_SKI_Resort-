@@ -77,29 +77,6 @@ Switzerland stood out in feature importance as it had the highest mean day pass 
 
 !['R2 Train Score by Comparison](../supervised_learning/table.svg)
 
-~~# European Ski Resorts~~
-
-~~*Do More Slopes Drive Up Day Pass Prices?*~~
-
-~~## Technical Documentation~~
-
-### European Ski Resorts Analysis – Capstone Project
-
-~~### Supervised & Unsupervised Machine Learning Tableau Dashboards~~
-
-~~The Knowledge House Data Analytics Fellowship~~
-
----
-
-~~## 1. Summary~~
-
-This project asks a practical business question: does the number and difficulty mix of ski slopes at a resort explain what it charges for an adult day pass?
-
-Using a cleaned dataset of 369 European ski resorts from Kaggle’s European Ski Resorts dataset, the team built a full analytics pipeline including exploratory data analysis, data cleaning, a supervised RandomForest regression model, an unsupervised PCA + K-Means segmentation, and four Tableau dashboards to answer that question.
-
-The answer is: partially.
-
-Slope counts explain some variation in price, but the best single predictor is the amount of intermediate-difficulty slopes. Terrain and country do not matter nearly as much as the terrain does.
 
 ### Key takeaways
 
@@ -108,8 +85,8 @@ Slope counts explain some variation in price, but the best single predictor is t
 - Adding country as a feature improved the model and reduced mean absolute percentage error.
 - Unsupervised clustering (K-Means, k=4) independently confirmed a natural segmentation into small-budget, midsize, large, and mega resorts based on physical scale.
 - This revealed which resorts are priced above or below what their peers typically charge.
-- ~~Switzerland-based resorts are consistently priced near their cluster average.~~
 
+# Section 6: Dashboard Interpretation
 ---
 
 ~~## 2. Project Overview
@@ -136,6 +113,8 @@ Test the hypothesis that resort scale drives adult day pass pricing by leveragin
 
 The dataset includes 377 resorts across 27 countries, with 18 raw features covering elevation, slope difficulty, lifts, snowmaking, and adult day pass pricing.~
 
+
+# Section 7: Limitation
 ---
 
 ~## 3. Methodology
@@ -167,25 +146,7 @@ Four dashboards were created to communicate findings visually:
 
 ---
 
-## 4. Findings
-
-### Terrain Matters More Than Raw Slope Count Alone
-
-The project showed that simply having more slopes does not fully explain pricing. The most important predictor was the amount of intermediate terrain, suggesting that resort variety and skier experience are more influential than scale alone.
-
-### Country Exerts a Meaningful Pricing Premium
-
-The model showed that Switzerland had an outsized impact on pricing. This indicates that country-specific market positioning, demand, and prestige contribute meaningfully to the cost of a day pass beyond physical terrain.
-
-### Cluster Structure Confirms Market Segments
-
-K-Means clustering grouped resorts into a coherent set of segments that align with size and scale: small-budget resorts, midsize resorts, large resorts, and mega resorts. These clusters provided additional evidence that resort pricing is tied to market tier and physical scale.
-
-### Pricing Signals Compared to Peer Averages
-
-Cluster analysis helped identify resorts that are priced above or below that of similar peers. This offers a valuable business lens for comparing market position, value perception, and competitive strategy.
-
----
+# Section 8: Recommendations
 
 ~## 5. Conclusion~
 
