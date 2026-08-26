@@ -47,7 +47,9 @@ Feature Engineering
 Adding country-specific features significantly expanded the variance explained ($R^2$ jumped from ~0.38 to ~0.74), drastically reduced overall error (RMSE dropped by 1.35 EUR), and minimized model overfitting.
 
 ## 4. Model Selection & Rationale
-Selected the **Random Forest Regressor** due to its ensemble structure. By averaging predictions across multiple decision trees trained on bootstrapped samples and random feature subsets, Random Forest effectively handles non-linear relationships, mitigates individual tree variance, and reduces overfitting compared to single decision trees or linear models.
+While several supervised models were available to choose from, Random Forest was selected for its ensemble learning approach: it builds decision trees, each trained on a bootstrapped sample (random sampling with replacement) of the dataset and restricted to a random subset of features at each split.
+
+Each captures a slightly different patterns in the data. The forest's final prediction is the average of all individual trees prediction which helps to minimize errors and converges towards the true underlying signal.
 
 ### Key Findings
 - **Intermediate Slope Power:** Intermediate slope count is the single strongest terrain predictor of pricing power, despite beginner and intermediate slope counts showing similar physical variance in unsupervised PCA.
