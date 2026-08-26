@@ -68,9 +68,11 @@ Switzerland stood out in feature importance as it had the highest mean day pass 
 !['R2 Train Score Comparison](../supervised_learning/table.svg)
 
 ### Key Takeaways
-- Intermediate slope length is the primary driver of price.
-- Country location is almost as impactful as physical terrain scale.
-- Unsupervised clustering ($k=4$) successfully validates pricing tiers against physical scale baselines.
+- Intermediate slope length is the primary predictor of day pass price.
+- Country matters almost as much as terrain. Being located in Switzerland accounted for about 30% of the model’s decision-making weight, second only to intermediate slope length.
+- Adding country as a feature improved the model and reduced mean absolute percentage error.
+- Unsupervised clustering (K-Means, k=4) independently confirmed a natural segmentation into small-budget, midsize, large, and mega resorts based on physical scale.
+This revealed which resorts are priced above or below what their peers typically charge.
 
 ## 6. Dashboard Interpretation
 - **EDA Dashboard:** Demonstrates positive skewness in day pass prices and illustrates how pricing scales with total slope kilometer distribution across regions.
