@@ -34,7 +34,7 @@
         unsupervised.ipynb
 ```
 # European Ski Resort Analysis
-Dataset: 368 resorts, 16 features covering elevation, slopes, lifts, pricing, and amenities.
+Dataset: 376 resorts, 16 features covering elevation, slopes, lifts, pricing, and amenities.
 ## Problem
 This project explores a practical business question: does the number and difficulty mix of a resort’s ski slopes help explain the price it charges for an adult day pass?
 ## Intended Audience
@@ -43,7 +43,7 @@ This project explores a practical business question: does the number and difficu
 - Business Strategists
 - Outdoor Recreation Enthusiasts
 ## Data Source
-European Ski Resorts (Kaggle) — 368 resorts in 26 countries with 16 features covering elevation, slopes, lifts, pricing, and amenities for 2022. 
+European Ski Resorts (Kaggle) — 376 resorts in 26 countries with 16 features covering elevation, slopes, lifts, pricing, and amenities for 2022. 
 ## Technologies Used
 - Visual Studio Code: Python, Jutyper Notebooks
 - Tableau Public 
