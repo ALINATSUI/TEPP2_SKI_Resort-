@@ -3,6 +3,9 @@ Created three Tableau Dashboards (EDA, Supervised, Unsupervised)
 Tableau Public Link: https://public.tableau.com/app/profile/sarah.nalepa/vizzes
 
 
+## Section 6: **<u>High Level Methodology/Approach</u>**
+
+
 
 ### **<u>Unsupervised Learning (PCA & K-Means Clustering)**</u>
 
@@ -19,3 +22,9 @@ We selected key resort features to predict adult day pass prices, focusing on ph
 Slope count alone had a real but limited relationship with day pass price (R² = 0.38). Adding country/region drastically improved performance (R² = 0.74), indicating that regional market factors — likely cost of living, currency, and resort brand — play a larger role in pricing than terrain size alone. Within the slope features, intermediate-difficulty terrain was the strongest individual predictor of price.
 
 
+
+## **<u>Part 4: Individual Contributions**</u>
+
+### Team Members: 
+
+Alina Tsui: Built the supervised (Random Forest regression) and unsupervised (K-Means/PCA clustering) modeling - including feature selection, hyperparameter tuning via GridSearch CV, plus cluster-count selection via Elbow method and silhouette score analysis. Built on Allan Solomon's EDA and initial country-grouping work as starting point for regression features. 
