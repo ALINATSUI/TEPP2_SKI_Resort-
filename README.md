@@ -79,7 +79,8 @@ Slope count alone had a real but limited relationship with day pass price (R² =
 Built the supervised (Random Forest regression) and unsupervised (K-Means/PCA clustering) modeling - including feature selection, hyperparameter tuning via GridSearch CV, plus cluster-count selection via Elbow method and silhouette score analysis. Built on Allan Solomon's EDA and initial country-grouping work as starting point for regression features.
 
 ### Allan Solomon
--
+Data preprocessing and exploratory analysis were the tasks assigned to me. Apart from the highly right-skewed, inter-correlated features of size and the feature of prices, centered on €40, which reflect the size of resorts and the height above sea level, analyzing 376 resorts led to the discovery of missing data hidden behind zeros and “no reports”. Then, I created the data cleaning pipeline by removing eight indoor, dry-slope and planned resorts (so 368 resorts in 26 countries), imputing hidden missing data, adding the VerticalDrop feature, encoding categoricals, and standardizing the numbers.
+
 ### Cherry Hill 
 -
 ### Sarah Nalepa
