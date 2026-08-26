@@ -131,7 +131,8 @@ Built the supervised (Random Forest regression) and unsupervised (K-Means/PCA cl
 ### Allan Solomon
 Data preprocessing and exploratory analysis were the tasks assigned to me. Apart from the highly right-skewed, inter-correlated features of size and the feature of prices, centered on €40, which reflect the size of resorts and the height above sea level, analyzing 376 resorts led to the discovery of missing data hidden behind zeros and “no reports”. Then, I created the data cleaning pipeline by removing eight indoor, dry-slope and planned resorts (so 368 resorts in 26 countries), imputing hidden missing data, adding the VerticalDrop feature, encoding categoricals, and standardizing the numbers.
 
-### Cherry Hill 
+### Cherry Hill
+Collaborated with the team to scope the project, evaluate candidate datasets, and select the European Ski Resorts dataset based on data completeness, features, and alignment with the analytical objectives. Defined the core problem statement by formalizing business questions, specifying analytical hypotheses, and outlining required preprocessing and modeling workflows. Completed the final project report (Final_Report.md), implementing a structured technical narrative with consistent formatting,  methodology documentation, and submission ready organization. Integrated detailed explanations of our data pipeline, feature engineering decisions, model development and evaluation results, identified limitations, and data recommendations.
 -
 ### Sarah Nalepa
 Product Manager and Tableau Dashboards (EDA, Supervised, Unsupervised)
