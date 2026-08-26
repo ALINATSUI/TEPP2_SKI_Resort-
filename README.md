@@ -141,6 +141,4 @@ Tableau Public Link: https://public.tableau.com/app/profile/sarah.nalepa/vizzes
 ### Zaria Taylor
 Collaborated with my team to select our project topic, identify the dataset, and define the analytical problem we aimed to solve. Completed the README.md and ensured the final project documentation was comprehensive, visually clear, and fully prepared for submission. 
 ## Link to Final Report
-# TEPP2 Ski Resort Analysis
-
 **Final Report:** [Click here to view the full project report](Report/FinalReport.md)
