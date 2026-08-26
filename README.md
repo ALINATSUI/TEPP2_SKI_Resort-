@@ -22,3 +22,10 @@ Alina Tsui: Built the supervised (Random Forest regression) and unsupervised (K-
 
 Sarah: Product Manager and Tableau Dashboards (EDA, Supervised, Unsupervised)
 Tableau Public Link: https://public.tableau.com/app/profile/sarah.nalepa/vizzes
+<img width="1998" height="1598" alt="EDA Dashboard" src="https://github.com/user-attachments/assets/496616ac-6a3f-4567-abae-7bed2c26d79d" />
+<img width="1998" height="1598" alt="K-mean Dashboard (2)" src="https://github.com/user-attachments/assets/8bab90ab-fd0c-400d-ad59-1a2466937606" />
+<img width="1998" height="1598" alt="ML Liner Regression Dashboard (1)" src="https://github.com/user-attachments/assets/04fbe2eb-082c-4f7f-b3e0-b03994a27688" />
+
+
+
+
