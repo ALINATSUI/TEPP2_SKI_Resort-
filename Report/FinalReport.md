@@ -10,33 +10,72 @@
 Selected physical resort scale and terrain metrics (slope lengths, total slopes, lifts, elevation range) to identify natural groupings independent of pricing.
 
 ### PCA (Principal Component Analysis)
-Applied PCA to reduce feature dimensionality, capturing the majority of structural variance across resorts while eliminating multi-collinearity among physical scale metrics.
+We applied PCA to reduce feature dimensionality, capturing the majority of structural variance across resorts while eliminating multi-collinearity among physical scale metrics. For example `HighestPoint` was dropped in favor of `VerticalDrop` due to a strong 0.838 correlation between the two. 
+
+Across the 7 clustering features, PC1 alone captured ~75% of the total variance (0.751) and PC1 combined with PC2 captured ~85% (0.751 + .102). By comparison, PC3 only added another 7% (0.066) so PC3 and beyond were excluded from the final model. 
+
+Based on this, `n_components=2` was selected for the final PCA transformation which enabled us to plot a 2D visualization of resorts and later used to plot and interpret K-means clusters. 
+
+### Cluster Determination (Elbow Method/Silhouette Score)
+To determine k number of clusters, both the Elbow Method and Silhouette scores were evaluated across k=1 through 10. 
+
+We plotted the Elbow method using WCSS/inertia against k, inertia declined sharply from k=1 to k=2 (2172.76 -> 828.38), and again from k=2 to k=3 (828.38 -> 587.54) before it started to flatten out. The curve leveled out noticeably around  k=3-4, marking the elbow. 
+
+Silhouette scores told a different story: the highest score occurred at k=2 (0.7157), decreasing after that and settling into 0.38-0.45 range for k>=5. 
+
+We chose k=4 as it sits right between where the elbow starts to flatten and  
+creates 4 meaningful clusters instead of collapsing resorts into just 2 groups. This 
+results in 4 clusters grouped by resort sizes (Small Resort, Mid-Size Resort, Large Resort and Mega-Resort). 
 
 ### K-Means Clustering & Cluster Interpretation
-- Applied K-Means ($k=4$) to segment resorts into four distinct operational tiers: **Small-Budget**, **Midsize**, **Large**, and **Mega Resorts**.
-- **Insight:** Clustering established a natural baseline for resort scale, making it clear which specific resorts price above or below their physical peer group.
+- K-Means with k=4 to group resorts into four distinct operational tiers based on resort: **Small/Budget**, **Mid-Size**, **Large**, and **Mega Resort**.  Average day pass price increased consistently with resort tier:
+
+- Mega Resorts average 57.67
+- Large Resorts average 53.61
+- Mid-Size Resorts average 45.60
+- Small/Budget Resorts average 36.21
+
+This indicates that resort size and scale are a strong driver of baseline pricing. 
+
+- **Insight:** Clustering established a natural baseline for resort scale, making it possible to identify which specific resorts price above or below their physical peer group.
+
+### Price Variance Within Clusters
+For each of the 4 clusters, the average day pass price was calculated and compared against each resort's actual
+price to determine which resorts were priced above or below their cluster's average. This provides an indication of which resorts are a relative "good buy" compared to similarly-tiered resorts offering premium pricing. 
+
+All 5 of the resorts with the biggest premiums over their cluster average are in Switzerland which reinforces the country premium that we've already seen in the supervised model's feature importance ranking. 
+
+Underpriced relative to cluster: the largest negative price gaps were geographically scattered to Germany, Eastern Europe, and Southern Russia. 
+
+Takeaway: After accounting for resort size, Swiss resorts consistently command a premium price over its counterparts with similar physical amenities. This mirrors the country impact that we found in the supervised model and suggests that "Country_Switzerland" premium isn't just limited to slope-count but it holds also for our resort tiers. 
+
+Price variance analysis helps reveal regional market differences that reflect brand prestige, reputation or other  
+factors beyond slope count as the primary basis for comparison. 
 
 ## 3. Supervised Models Tested & Compared
 ### Before building either mode, a handful of resorts with TotalSlope ==0 were dropped from the dataset, since a resort with no recorded slopes did not provide any benefit for a model to investigate how slope counts could relate to day pass price.
 
 Model 1: Slopes-Only Random Forest
 As we were interested in determining whether number of slopes has any impact on the day pass price, I selected 'BeginnerSlope', 'IntermediateSlope' and 'DifficultSlope' values to be included as the features and referenced as 'X' for our independent variable.
+
 ### Model 1: Slopes-Only Random Forest
 - **Features:** `BeginnerSlope`, `IntermediateSlope`, `DifficultSlope`
 - **Performance:** $R^2 = 0.3814$, $\text{RMSE} = 8.27$, $\text{MAE} = 6.274\text{ EUR}$ (~15% error).
 - 
 Model 2: Slopes + Country Random Forest
 Building on Model 1, the 'Country' column was one-hot encoded into dummy variable to test whether resort location also impacted day pass price, with countries having fewer than 5 resorts grouped into an 'Other' category to avoid overly sparse features. These dummy variables were added to the slope features to build the second model.
+
 ### Model 2: Slopes + Country Random Forest
 - **Features:** Slope breakdown + One-Hot Encoded Country features.
 - **Performance:** $R^2 = 0.7352$, $\text{RMSE} = 6.9178$, $\text{MAE} = 5.41\text{ EUR}$ (~12.93% error).
 
-Model Comparison
-The R2 score tells us how much variance the model explains on unseen data. Adding the country specific feature drastically improved the test R2 score as this represented the unseen data. Comparing Model 1 (Slopes-Only Random Forest) to Model 2 (Slopes + Country specific Random Forest), we observe that Model 1's R2 test score increased from .3814 to Model 2's R2 test score of .7352, when we accounted for max_depth. We also observed with country specific feature were added to the model, there was a reduction in overfitting.
 ### Model Comparison
+
+The R<sup>2</sup> score tells us how much variance the model explains on unseen data. Adding the country specific feature drastically improved the test R<sup>2</sup> score as this represented the unseen data. Comparing Model 1 (Slopes-Only Random Forest) to Model 2 (Slopes + Country specific Random Forest), we observe that Model 1's R2 test score increased from .3814 to Model 2's R2 test score of .7352, when we accounted for max_depth. We also observed with country specific feature were added to the model, there was a reduction in overfitting.
+
 Adding country-specific features significantly expanded the variance explained ($R^2$ jumped from ~0.38 to ~0.74), drastically reduced overall error (RMSE dropped by 1.35 EUR), and minimized model overfitting.
 
-While R2 was able to tell us about variance in our model's evaluation, we needed to see how much of an improvement our prediction were through RMSE (Root Mean Squared Error). In Model 1, the RMSE was 8.27, whereas Model 2, RMSE improved to 6.9178.
+While R<sup>2</sup> was able to tell us about variance in our model's evaluation, we needed to see how much of an improvement our prediction were through RMSE (Root Mean Squared Error). In Model 1, the RMSE was 8.27, whereas Model 2, RMSE improved to 6.9178.
 
 Furthermore, Mean Absolute Error (MAE) provides another lens to see how accurate our model's predictions. On average, Model's 2 MAE was off by about 5.41 EUR, whereas Model 1's MAE was off by 6.274 EUR, which represents a 12.93% MAE error for Model 2 and 15% for Model 1.
 
