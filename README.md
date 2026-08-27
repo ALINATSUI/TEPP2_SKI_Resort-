@@ -3,35 +3,35 @@
 
 # Repository Structure
 ```
-│      README.md
-│   
-├───code
-│       .DS_Store
-│       ski_resorts_eda_preprocessing.ipynb
-│       
-├───dashboard
-│       EDA Dashboard.png
-│       K-mean Dashboard.png
-│       ML Liner Regression Dashboard.png
-│       
-├───data
-│       .DS_Store
-│       European_Ski_Resorts.csv
-│       ski_resorts_clean.csv
-│       ski_resorts_ML.csv
-│       ski_resorts_processed.csv
-│       ski_resorts_supervised_predictions.csv
-│       ski_resorts_unsupervised.csv
-│       ski_resorts_unsupervised_predictions.csv
-│       
-├───Report
-│       Final_Report.md
-│       
-├───supervised_learning
-│       supervised.ipynb
-│       
-└───unsupervised_learning
-        unsupervised.ipynb
+├── README.md
+├── Report
+│   └── FinalReport.md
+├── code
+│   ├── ski_resorts_clean.csv
+│   ├── ski_resorts_eda_preprocessing.ipynb
+│   └── ski_resorts_processed.csv
+├── dashboard
+│   ├── EDA Dashboard.png
+│   ├── K-mean Dashboard (2).png
+│   └── ML Liner Regression Dashboard (1).png
+├── data
+│   ├── European_Ski_Resorts.csv
+│   ├── ski_resorts_ML.csv
+│   ├── ski_resorts_clean.csv
+│   ├── ski_resorts_processed.csv
+│   ├── ski_resorts_supervised_predictions.csv
+│   └── ski_resorts_unsupervised_predictions.csv
+├── ski_resorts_eda_preprocessing.ipynb
+├── supervised_learning
+│   ├── Feature_Importance.png
+│   ├── actual_vs_predicted_tuned_hyperparams.png
+│   ├── supervised.ipynb
+│   └── table.svg
+└── unsupervised_learning
+    ├── Elbow_Method.png
+    ├── K-Means_Cluster_Comparison.png
+    ├── Resort_Segment_Profile.png
+    └── unsupervised.ipynb
 ```
 # European Ski Resort Analysis
 Dataset: 376 resorts, 16 features covering elevation, slopes, lifts, pricing, and amenities.
